@@ -14,7 +14,15 @@ const io = new Server(server, {
     },
 })
 
+// Detect whether a connection has been made
+io.on("connection", (socket) => {
+    console.log(socket.id);
 
+    // Disconnect from the server
+    socket.on("disconnect", () => {
+        console.log("User Disconnected", socket.id);
+    }) 
+});
 
 
 
