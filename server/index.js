@@ -17,12 +17,18 @@ const io = new Server(server, {
 
 // Detect whether a connection has been made
 io.on("connection", (socket) => {
-    console.log(`User: ${socket.id}`);
+    //console.log(`User: ${socket.id}`);
+
+    // Allow user to join room
+    socket.on("join_room", (data) => {
+        socket.join(data);
+        console.log(`User with ID: ${socket.id} joined Room: ${data}`);
+    });
 
     // Disconnect from the server
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
-    }) 
+    });
 });
 
 
