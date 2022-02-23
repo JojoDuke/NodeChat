@@ -19,10 +19,14 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
     //console.log(`User: ${socket.id}`);
 
-    // Allow user to join room
+    // Allow user to join room on the server
     socket.on("join_room", (data) => {
         socket.join(data);
         console.log(`User with ID: ${socket.id} joined Room: ${data}`);
+    });
+
+    socket.on("send_message", (data) => {
+        console.log(data);
     });
 
     // Disconnect from the server
