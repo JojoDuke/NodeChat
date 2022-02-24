@@ -6,6 +6,8 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import { Box } from '@mui/system';
+import { Container } from '@mui/material';
 
 
 
@@ -25,9 +27,10 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="static" color="primary">
+    {/* NAV-BAR */}
+      <AppBar position="static" color="transparent">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1, color: "black", }}>
             NodeChat
           </Typography>
           <div>
@@ -36,6 +39,12 @@ function App() {
           </div>
         </Toolbar>
       </AppBar>
+
+      {/* HERO SECTION */}
+      <Container maxWidth="xl" sx={{ textAlign: "center", }}>
+        <Typography variant='h4'>NodeChat is a simple live chat app made with React and Node</Typography>
+        <Typography variant='h6'>Just open the app in another window and make sure to join the same room</Typography>
+      </Container>
 
       {!showChat ? (
         <div className='joinChat-div'>
