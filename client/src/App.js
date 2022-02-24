@@ -2,6 +2,12 @@ import './App.css';
 import io from 'socket.io-client';
 import { useState } from 'react';
 import Chats from './components/Chats';
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+
+
 
 const socket = io.connect("http://localhost:3001");
 
@@ -19,8 +25,20 @@ function App() {
 
   return (
     <div className="App">
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            NodeChat
+          </Typography>
+          <div>
+            <button className='nav-btns white'>How to use</button>
+            <button className='nav-btns black'>Follow me on Twitter...</button>
+          </div>
+        </Toolbar>
+      </AppBar>
+
       {!showChat ? (
-        <div>
+        <div className='joinChat-div'>
           <h3>Join A Chat</h3>
         <input type="text" placeholder="Name..." onChange={ (e) => {setUsername(e.target.value)} }/>
         <input type="text" placeholder="Room ID..." onChange={ (e) => {setRoom(e.target.value)} } />

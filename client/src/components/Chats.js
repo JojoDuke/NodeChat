@@ -25,7 +25,6 @@ function Chats({socket, username, room}) {
     useEffect(() => {
         socket.on("receive_message", (messageData) => {
             setMessageList((list) => [...list, messageData]);
-            
         });
     }, [socket]);
 
