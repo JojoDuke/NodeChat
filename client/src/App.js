@@ -2,11 +2,9 @@ import './App.css';
 import io from 'socket.io-client';
 import { useState } from 'react';
 import Chats from './components/Chats';
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import { Box } from '@mui/system';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 
 
