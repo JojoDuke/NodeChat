@@ -18,31 +18,29 @@ function Chats({socket, username, room}) {
             };
 
             await socket.emit("send_message", messageData);
+            setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
         };
     }
 
     useEffect(() => {
-        socket.on("receive_message", (messageData) => {
-            setMessageList((list) => [...list, messageData]);
+        socket.on("receive_message", (data) => {
+            setMessageList((list) => [...list, data]);
+            //setCurrentMessage("");
         });
     }, [socket]);
 
   return (
     <div className='window'>
-        <div className="chat-header">
-            <p>Live Chat</p>
-        </div>
-
         <div className="chat-body">
             <ScrollToBottom className="message-container"> 
                 {messageList.map((messageContent) => {
-                    return <div className='message-item' id={username === messageContent.author ? "sender" : "receiver"}>
+                    return <div className='message-item' id={username === messageContent.author ? "receiver" : "sender"}>
                         <div>
-                            <div className="content">
+                            <div className="message-content">
                                 <p>{messageContent.message}</p>
                             </div>
-                            <div className="meta">
+                            <div className="message-meta">
                                 <p>{messageContent.time}</p>
                                 <p>{messageContent.author}</p>
                             </div>
