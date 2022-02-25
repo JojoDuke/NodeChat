@@ -14,7 +14,7 @@ function Chats({socket, username, room}) {
                 room: room,
                 author: username,
                 message: currentMessage,
-                time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
             };
 
             await socket.emit("send_message", messageData);
@@ -41,7 +41,7 @@ function Chats({socket, username, room}) {
                                 <p>{messageContent.message}</p>
                             </div>
                             <div className="message-meta">
-                                <p>{messageContent.time}</p>
+                                <p>{messageContent.time + ","}</p>
                                 <p>{messageContent.author}</p>
                             </div>
                         </div>
