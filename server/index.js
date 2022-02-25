@@ -11,7 +11,7 @@ require("dotenv").config();
 
 const io = new Server(server, {
     cors: {
-        origin: "https://nodechat-jd.herokuapp.com",
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     },
 })
