@@ -5,6 +5,7 @@ const cors = require("cors");
 const server = http.createServer(app);
 app.use(cors());
 const { Server } = require("socket.io");
+require("dotenv").config();
 
 
 
@@ -38,6 +39,6 @@ io.on("connection", (socket) => {
 
 
 
-server.listen(3001, () => {
+server.listen(process.env.PORT || 3001, () => {
     console.log("Working");
 });
