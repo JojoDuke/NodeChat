@@ -3,10 +3,10 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const server = http.createServer(app);
+app.use(cors());
 const { Server } = require("socket.io");
 
 require("dotenv").config();
-app.use(cors());
 
 const io = new Server(server, {
     cors: {
@@ -17,7 +17,7 @@ const io = new Server(server, {
 
 // Detect whether a connection has been made
 io.on("connection", (socket) => {
-    //console.log(`User: ${socket.id}`);
+    console.log(`User: ${socket.id}`);
 
     // Allow user to join room on the server
     socket.on("join_room", (data) => {
@@ -36,8 +36,16 @@ io.on("connection", (socket) => {
     });
 });
 
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
 
+    const path = require('path');
+    app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
-server.listen(process.env.PORT || 3001, () => {
-    console.log("Working");
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, () => {
+    console.log("Working " + PORT);
 });
