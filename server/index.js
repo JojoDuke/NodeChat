@@ -36,16 +36,6 @@ io.on("connection", (socket) => {
     });
 });
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-
-    const path = require('path');
-    app.get('*', (req, res) => {
-        const index = path.join(__dirname, 'client','build', 'index.html');
-        res.sendFile(index);
-  });
-}
-
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
     console.log("Working " + PORT);
