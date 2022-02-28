@@ -35,7 +35,6 @@ function App() {
             style={{  height: "50px", }}
           />
           <div>
-            <button className='nav-btns white'>How to use</button>
             <button 
               className='nav-btns black'
               onClick={(e) => {
